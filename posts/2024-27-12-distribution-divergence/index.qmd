@@ -18,6 +18,10 @@ execute:
   cache: true
 image: preview-image.png
 citation: true
+
+comments:
+  giscus: 
+    repo: gituser/gitrepo
 ---
 Have you ever wondered how we measure how "far apart" two distributions are in data science? It's not as simple as it might seem, but don't worry – we'll keep the math tame and focus on intuition.
 
