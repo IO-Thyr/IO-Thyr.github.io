@@ -1,0 +1,34 @@
+---
+title: "A propos de moi"
+
+about:
+  image: "flamme_personnage.png"
+  template: trestles
+toc: false
+format: 
+  html:
+    page-layout: full
+---
+
+### 🌟 Ce que j’apprends au quotidien  
+
+Plutôt qu'une liste classique façon CV, voici les domaines qui attisent ma curiosité et enrichissent mes compétences au fil des jours :  
+
+#### 🚀 **Développement logiciel**  
+- **Git** : l'incontournable pour une collaboration efficace.  
+- Approfondir **Python** et explorer **Go** : deux langages aux forces complémentaires pour les projets data et systèmes performants.  
+- Maîtriser les **structures de données** pour optimiser les algorithmes.  
+- Comprendre les **systèmes distribués**, le fondement des applications modernes.  
+- Explorer les outils et concepts de **ML Ops** : Docker, Kubernetes, CI/CD pour automatiser et fiabiliser les pipelines d’apprentissage automatique.  
+- Approfondir la **programmation orientée objet** et **fonctionnelle** pour structurer et simplifier les solutions complexes.  
+- Maitriser les **design patterns** (Strategy, Factory) pour concevoir des architectures robustes et évolutives.  
+
+#### 🔬 **Science**  
+- Renforcer mes bases en **algèbre linéaire**, essentielle pour l’apprentissage automatique.  
+- Approfondir le **calcul différentiel et intégral** pour modéliser et optimiser des systèmes complexes.  
+- Maîtriser les **probabilités** et les **distributions de probabilité** pour gérer l’incertitude dans les données.  
+- Affiner mes compétences en **statistiques**, un pilier incontournable pour un DS.  
+- Explorer la **géométrie**, où les mathématiques rencontrent la visualisation.  
+- Comprendre la **théorie de l’information** : entropie, compression, et transmission des données.  
+- Etudier des techniques d’**optimisation mathématique**.
+- Étudier la **théorie des graphes**, clé pour modéliser les relations et réseaux complexes.  

@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "I/O"
+  favicon: "flamme_personnage.png"
+  search: true
+  navbar:
+    logo: "disk.jpeg" 
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "About"
+        href: about.qmd
+      - text: "Blog"
+        href: posts.qmd
+    right: 
+    - icon: github
+      href: https://quarto.org/docs/websites
+    - icon: linkedin
+      href: https://quarto.org/docs/websites
+    - icon: youtube
+      href: https://www.youtube.com/@essience
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true
+    mainfont: "roboto"
+    fontsize: 20px

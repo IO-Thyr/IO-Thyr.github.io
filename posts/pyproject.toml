@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "posts"
+version = "0.1.0"
+description = ""
+authors = ["T-hyr <91010800+T-hyr@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.2.1"
+seaborn = "^0.13.2"
+scipy = "^1.14.1"
+jupyter = "^1.1.1"
+plotly = "^5.24.1"
+jupyter-cache = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

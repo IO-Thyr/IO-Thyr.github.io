@@ -1,0 +1,55 @@
+---
+title: "Bienvenue sur mon Site !"
+subtitle: ""
+image: "flamme_personnage.png"
+format: 
+  html:
+    page-layout: full
+about:
+  template: jolla
+  links: 
+    - icon: github
+      text: GitHub
+      href: https://quarto.org/docs/websites
+    - icon: linkedin
+      text: LinkedIn
+      href: https://quarto.org/docs/websites
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/@essience
+---
+
+::: {.callout-note appearance="minimal"}
+Vous trouverez içi un portail d'accès sur qui je suis et ce que je fais.
+
+This is a gateway to who I am and what I do. 
+:::
+
+::: {.callout-tip appearance="minimal"}
+> Il n'y a rien de bon ni de mauvais sauf ces deux choses : la sagesse qui est un bien, l'ignorance qui est un mal.  
+>
+> There is nothing good or bad except these two things: wisdom, which is good, and ignorance, which is evil.
+>
+> Euthydème, 281e de Platon
+:::
+
+💡 **Data Scientist qui aime apprendre**  
+De l’intelligence artificielle aux sciences "classique", je me consacre à comprendre et à partager tout ce qui peux m'intéresser.
+
+📊 **Créateur de contenu**  
+Lorsque je ne calcule pas de chiffres ou ne développe pas d'algorithmes, vous me trouverez le soir en train de créer du contenu sur [ma chaîne YouTube](https://www.youtube.com/@essience) - un témoignage de mon côté créatif, où art et technologie se rencontrent !
+
+🎯 **Mission**  
+Rendre les concepts complexes accessibles, stimuler la curiosité et encourager l’exploration de la science et de la technologie.
+
+
+---
+
+💡 **A Data Scientist with a passion for learning**    
+From artificial intelligence to "classical" sciences, I dedicate myself to understanding and sharing everything that piques my curiosity.  
+
+📊 **Content Creator**    
+When I'm not crunching numbers or developing algorithms, you'll find me in the evening creating content on [my YouTube channel](https://www.youtube.com/@essience) – a testament to my creative side, where art and technology meet!  
+
+🎯 **Mission**    
+To make complex concepts accessible, spark curiosity, and encourage the exploration of science and technology.

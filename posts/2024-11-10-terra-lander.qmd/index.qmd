@@ -1,0 +1,271 @@
+---
+title: "3D Terra Lander Game with Python and Ursina"
+description: "Lunar lander est un classique des exercices de RL. Dans ce post nous proposons de le revisiter dans une version **Terra Lander 3D**. Concurencer SpaceX est notre objectif 🫡"
+author:
+  - name: T Hyr
+    url: https://XXX.github.io/
+    orcid: 0000-0002-5300-3075
+    affiliation: Data Scientist and Content Creator.
+    affiliation-url: https://XXXXXX.github.io/ 
+date: 10-24-2022
+categories: [Python, Ursina, gamedev, Reinforcement learning] # self-defined categories
+citation: 
+  url: https://XXXXXX.github.io/posts/2022-10-24-my-blog-post/ 
+image: preview-image.png
+draft: true # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Introduction
+
+Game development can seem daunting at first, but with modern game engines and Python, it's become more accessible than ever. In this tutorial, we'll explore the Ursina engine, a simple yet powerful game engine built on top of Panda3D that makes 3D game development approachable for Python developers of all skill levels.
+
+We'll build a simple 3D game where players control a cube, jump around a platform, and collect floating orbs. Through this project, we'll learn the fundamentals of 3D game development, including:
+
+- Setting up a game environment
+- Implementing player movement and physics
+- Handling collisions
+- Creating a user interface
+- Managing game state
+
+## What is Ursina?
+
+Ursina is a game engine built with Python simplicity in mind. It's designed to make game development accessible while still providing powerful features. Some key advantages of Ursina include:
+
+- Simple, Python-native syntax
+- Built-in physics and collision detection
+- Easy 3D model and texture handling
+- Straightforward entity-component system
+- Cross-platform compatibility
+
+## Project Structure
+
+Before diving into the code, let's understand how our game is structured:
+
+```{mermaid}
+classDiagram
+    class Game {
+        +GameConfig config
+        +Player player
+        +List~Collectible~ collectibles
+        +GameUI ui
+        +setup_game()
+        +run()
+    }
+    
+    class GameConfig {
+        +float PLAYER_SPEED
+        +float GRAVITY
+        +float JUMP_POWER
+        +other_parameters...
+    }
+    
+    class Player {
+        +Vec3 velocity
+        +int score
+        +int health
+        +update()
+        +jump()
+    }
+    
+    class Collectible {
+        +respawn()
+        +update()
+    }
+    
+    class GameUI {
+        +update_score()
+        +update_health()
+    }
+    
+    Game --> GameConfig
+    Game --> Player
+    Game --> Collectible
+    Game --> GameUI
+```
+
+## Setting Up the Environment
+First, you'll need to install Ursina. You can do this using poetry:
+```bash
+poetry add ursina
+```
+
+## Game Configuration
+We start by defining our game's configuration using Python's dataclass feature. This makes it easy to manage and modify game parameters:
+```python
+@dataclass
+class GameConfig:
+    """Game configuration parameters"""
+    PLAYER_SPEED: float = 12.0
+    GRAVITY: float = 30.0
+    JUMP_POWER: float = 15.0
+    GROUND_LEVEL: float = 1.0
+    TERMINAL_VELOCITY: float = 25.0
+    PHYSICS_TIME_SCALE: float = 1.0
+    MOVEMENT_DAMPENING: float = 0.85
+    COLLECTIBLE_COUNT: int = 8
+    GROUND_SIZE: float = 30.0
+    COLLECTIBLE_SPAWN_RANGE: float = 10.0
+    POINTS_PER_COLLECTIBLE: int = 10
+```
+
+## Player Movement and Physics
+The player movement system combines keyboard input with physics simulation. Here's how the movement flow works:
+```{mermaid}
+flowchart TD
+    A[Input Detection] --> B{Movement Keys Pressed?}
+    B -->|Yes| C[Calculate Movement Direction]
+    B -->|No| D[Apply Movement Dampening]
+    C --> E[Update Velocity]
+    D --> E
+    E --> F[Apply Gravity]
+    F --> G[Update Position]
+    G --> H{Below Ground Level?}
+    H -->|Yes| I[Reset to Ground Level]
+    H -->|No| J[Continue]
+    I --> K[End Update]
+    J --> K
+```
+
+The Player class handles movement through several key methods:
+
+1. _handle_movement(): Processes keyboard input and calculates movement direction
+2. _apply_physics(): Applies gravity and handles ground collision
+3. jump(): Implements the jumping mechanism
+
+Let's look at how the movement code works:
+
+```python
+def _handle_movement(self):
+    # Calculate movement direction from WASD keys
+    move_direction = Vec3(
+        held_keys['d'] - held_keys['a'],  # X-axis movement
+        0,                                # Y-axis (handled by physics)
+        held_keys['w'] - held_keys['s']   # Z-axis movement
+    ).normalized()
+    
+    # Apply movement with smoothing
+    target_speed = self.config.PLAYER_SPEED
+    if move_direction.length() > 0:
+        target_velocity = move_direction * target_speed
+        self.velocity.x = lerp(self.velocity.x, target_velocity.x, 0.25)
+        self.velocity.z = lerp(self.velocity.z, target_velocity.z, 0.25)
+    else:
+        # Apply friction when not moving
+        self.velocity.x *= self.config.MOVEMENT_DAMPENING
+        self.velocity.z *= self.config.MOVEMENT_DAMPENING
+```
+
+## Collectible System
+The collectible system adds gameplay elements that the player can interact with. Each collectible is a floating orb that respawns in a new location when collected.
+Here's how the collectible interaction works:
+
+```{mermaid}
+sequenceDiagram
+    participant P as Player
+    participant C as Collectible
+    participant UI as GameUI
+    
+    P->>P: Check for collisions
+    P->>C: Intersect check
+    alt Collision Detected
+        P->>P: Update score
+        P->>UI: Update score display
+        P->>C: Trigger respawn
+        C->>C: Calculate new position
+        C->>C: Update position
+    end
+```
+
+## User Interface
+The game's UI system provides feedback to the player through:
+
+Score display
+Health display
+Game instructions
+
+The UI is implemented using Ursina's Text entity:
+```python
+class GameUI:
+    def __init__(self):
+        self.score_text = Text(
+            text='Score: 0',
+            position=(-0.85, 0.45),
+            scale=2,
+            color=color.white
+        )
+```
+
+## Camera and Lighting Setup
+The game uses a third-person perspective with the camera positioned above and behind the player:
+
+```python
+def _setup_camera(self):
+    camera.position = (0, 15, -20)
+    camera.look_at(Vec3(0,0,0))
+    Sky()
+```
+By importing shader from ursina you can add shadows to Entity.
+Lighting is provided by a directional light to create shadows and depth:
+```python
+def _setup_lighting(self):
+    DirectionalLight(y=2, z=3, rotation=(45, -45, 45))
+```
+
+## Game Loop and State Management
+
+```{mermaid}
+stateDiagram-v2
+    [*] --> Initialize
+    Initialize --> Update
+    Update --> HandleInput
+    HandleInput --> UpdatePhysics
+    UpdatePhysics --> CheckCollisions
+    CheckCollisions --> UpdateUI
+    UpdateUI --> Update
+    Update --> [*]: Game Ends
+```
+
+## Running the Game
+To run the game, simply create an instance of the Game class and call its run method:
+
+```python
+if __name__ == '__main__':
+    game = Game()
+    game.run()
+```
+
+
+# The terra Lander Game
+
+## Objectifs
+
+1. **Game Mechanics**:
+   - Create a 3D environment with a terrain that the player must navigate to land their spacecraft safely
+   - Implement realistic physics simulation for the spacecraft, including thrust, gravity, and collision detection
+   - Design the landing zone and any obstacles or hazards the player must avoid
+   - Incorporate scoring and win/lose conditions based on the success of the landing
+
+2. **Player Controls**:
+   - Allow the player to control the spacecraft's thrust, rotation, and other relevant inputs
+   - Provide a smooth and responsive control scheme that feels natural to the player
+
+3. **Reinforcement Learning Integration**:
+   - Define the game state, actions, and rewards for the reinforcement learning agent
+   - Implement a reinforcement learning algorithm, such as Q-learning or policy gradient methods, to train the agent to play the game effectively
+   - Ensure the agent can observe the game state, take actions, and receive rewards to learn an optimal landing strategy
+
+4. **Rendering and Visualization**:
+   - Use a 3D game engine like Unreal Engine or Unity to handle the rendering and visual aspects of the game
+   - Develop a polished and visually appealing user interface that provides feedback to the player and the reinforcement learning agent
+
+5. **Training and Deployment**:
+   - Set up a training environment where the reinforcement learning agent can practice and improve its landing skills
+   - Evaluate the agent's performance and make adjustments to the game mechanics, reward function, or learning algorithm as needed
+   - Once the agent has achieved a satisfactory level of performance, integrate it into the main game for players to compete against
+
+6. **Extras**:
+   - Add advanced features like multiple landing zones, dynamic terrain, or environmental hazards to increase the complexity and challenge of the game
+   - Implement a multiplayer mode where human players can compete against the reinforcement learning agent or each other
+   - Provide options for players to customize the spacecraft's attributes or the game's difficulty level
+
+Remember to break down the project into smaller, manageable tasks and iterate on the design and implementation as needed. Utilize existing resources, such as game engine tutorials and reinforcement learning libraries, to expedite the development process. Good luck with your Terra Lander game project!
