@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Bienvenue sur mon Site !",
-    "section": "",
-    "text": "Vous trouverez içi un portail d’accès sur qui je suis et ce que je fais.\nThis is a gateway to who I am and what I do.\n\n\n\n\n\n\n\n\n\n\nIl n’y a rien de bon ni de mauvais sauf ces deux choses : la sagesse qui est un bien, l’ignorance qui est un mal.\nThere is nothing good or bad except these two things: wisdom, which is good, and ignorance, which is evil.\nEuthydème, 281e de Platon\n\n\n\n\n💡 Data Scientist qui aime apprendre\nDe l’intelligence artificielle aux sciences “classique”, je me consacre à comprendre et à partager tout ce qui peux m’intéresser.\n📊 Créateur de contenu\nLorsque je ne calcule pas de chiffres ou ne développe pas d’algorithmes, vous me trouverez le soir en train de créer du contenu sur ma chaîne YouTube - un témoignage de mon côté créatif, où art et technologie se rencontrent !\n🎯 Mission\nRendre les concepts complexes accessibles, stimuler la curiosité et encourager l’exploration de la science et de la technologie.\n\n💡 A Data Scientist with a passion for learning\nFrom artificial intelligence to “classical” sciences, I dedicate myself to understanding and sharing everything that piques my curiosity.\n📊 Content Creator\nWhen I’m not crunching numbers or developing algorithms, you’ll find me in the evening creating content on my YouTube channel – a testament to my creative side, where art and technology meet!\n🎯 Mission\nTo make complex concepts accessible, spark curiosity, and encourage the exploration of science and technology."
-  },
-  {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "My Blog",
     "section": "",
     "text": "The Quest for understanding Distribution Distance: From Theory to Practice\n\n\n\nInformation Theory\n\n\nMath\n\n\n\n\n\n\n\nTancrede Hayer\n\n\nDec 27, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bienvenue sur mon Site !",
+    "section": "",
+    "text": "Vous trouverez içi un portail d’accès sur qui je suis et ce que je fais.\nThis is a gateway to who I am and what I do.\n\n\n\n\n\n\n\n\n\n\nIl n’y a rien de bon ni de mauvais sauf ces deux choses : la sagesse qui est un bien, l’ignorance qui est un mal.\nThere is nothing good or bad except these two things: wisdom, which is good, and ignorance, which is evil.\nEuthydème, 281e de Platon\n\n\n\n\n💡 Data Scientist qui aime apprendre\nDe l’intelligence artificielle aux sciences “classique”, je me consacre à comprendre et à partager tout ce qui peux m’intéresser.\n📊 Créateur de contenu\nLorsque je ne calcule pas de chiffres ou ne développe pas d’algorithmes, vous me trouverez le soir en train de créer du contenu sur ma chaîne YouTube - un témoignage de mon côté créatif, où art et technologie se rencontrent !\n🎯 Mission\nRendre les concepts complexes accessibles, stimuler la curiosité et encourager l’exploration de la science et de la technologie.\n\n💡 A Data Scientist with a passion for learning\nFrom artificial intelligence to “classical” sciences, I dedicate myself to understanding and sharing everything that piques my curiosity.\n📊 Content Creator\nWhen I’m not crunching numbers or developing algorithms, you’ll find me in the evening creating content on my YouTube channel – a testament to my creative side, where art and technology meet!\n🎯 Mission\nTo make complex concepts accessible, spark curiosity, and encourage the exploration of science and technology."
   },
   {
     "objectID": "posts/2024-27-12-distribution-divergence/index.html",
@@ -96,19 +96,5 @@
     "title": "A propos de moi",
     "section": "",
     "text": "🌟 Ce que j’apprends au quotidien\nPlutôt qu’une liste classique façon CV, voici les domaines qui attisent ma curiosité et enrichissent mes compétences au fil des jours :\n\n🚀 Développement logiciel\n\nGit : l’incontournable pour une collaboration efficace.\n\nApprofondir Python et explorer Go : deux langages aux forces complémentaires pour les projets data et systèmes performants.\n\nMaîtriser les structures de données pour optimiser les algorithmes.\n\nComprendre les systèmes distribués, le fondement des applications modernes.\n\nExplorer les outils et concepts de ML Ops : Docker, Kubernetes, CI/CD pour automatiser et fiabiliser les pipelines d’apprentissage automatique.\n\nApprofondir la programmation orientée objet et fonctionnelle pour structurer et simplifier les solutions complexes.\n\nMaitriser les design patterns (Strategy, Factory) pour concevoir des architectures robustes et évolutives.\n\n\n\n🔬 Science\n\nRenforcer mes bases en algèbre linéaire, essentielle pour l’apprentissage automatique.\n\nApprofondir le calcul différentiel et intégral pour modéliser et optimiser des systèmes complexes.\n\nMaîtriser les probabilités et les distributions de probabilité pour gérer l’incertitude dans les données.\n\nAffiner mes compétences en statistiques, un pilier incontournable pour un DS.\n\nExplorer la géométrie, où les mathématiques rencontrent la visualisation.\n\nComprendre la théorie de l’information : entropie, compression, et transmission des données.\n\nEtudier des techniques d’optimisation mathématique.\nÉtudier la théorie des graphes, clé pour modéliser les relations et réseaux complexes."
-  },
-  {
-    "objectID": "about.html#développement-logiciel",
-    "href": "about.html#développement-logiciel",
-    "title": "About",
-    "section": "",
-    "text": "Git, l’outil incontournable de collaboration.\n\nApprofondir Python et découvrir Go, deux langages complémentaires pour la science des données et les systèmes performants.\n\nComprendre les structures de données pour des algorithmes plus efficaces.\n\nPlonger dans les systèmes distribués, l’épine dorsale des infrastructures modernes.\n\nExplorer les outils et concepts de ML Ops, comme Docker, Kubernetes, et CI/CD, pour automatiser et fiabiliser les pipelines d’apprentissage automatique.\n\nAméliorer ma pratique de la programmation orientée objet et fonctionnelle.\n\nDécoder les design patterns, comme le Strategy et le Factory, pour concevoir des solutions robustes et élégantes."
-  },
-  {
-    "objectID": "about.html#science",
-    "href": "about.html#science",
-    "title": "About",
-    "section": "",
-    "text": "Renforcer mes bases en algèbre linéaire, un outil clé pour l’intelligence artificielle.\n\nApprofondir le calcul différentiel et intégral, indispensable pour l’optimisation et la modélisation mathématique.\n\nDécouvrir les probabilités et leurs distributions, essentielles pour comprendre l’incertitude.\n\nAffiner mes compétences en statistiques, le langage de la science des données.\n\nRevisiter la géométrie, où mathématiques et visualisation se rencontrent.\n\nExplorer la théorie de l’information, pour maîtriser les concepts d’entropie, compression, et traitement des données.\n\nApprofondir les techniques d’optimisation mathématique, comme la descente de gradient et la programmation convexe.\n\nÉtudier la théorie des graphes, fondamentale pour modéliser les réseaux et relations complexes."
   }
 ]
