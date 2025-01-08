@@ -189,12 +189,12 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://quarto.org/docs/websites"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/IO-Thyr"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://quarto.org/docs/websites"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/tancrede-hayer/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -323,7 +323,7 @@ Why ?
 <h1 data-number="2"><span class="header-section-number">2</span> The Kullback-Leibler and Jensen-Shannon divergence</h1>
 <section id="the-kullback-leibler-divergence" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="the-kullback-leibler-divergence"><span class="header-section-number">2.1</span> The Kullback-Leibler divergence</h2>
-<p>Imagine you’re in a bustling city, and you have two maps, <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, trying to guide you through the streets. Now, we want to know which map is more reliable when navigating from point A to B. Here comes KL divergence, to help us out!</p>
+<p>Imagine you’re in a bustling city, and you have two maps, <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, trying to guide you through the streets. Now, we want to know which map is more reliable when navigating from point A to B (by comparing an outdated map vs a new official map). Here comes KL divergence, to help us out!</p>
 <p>The KL Divergence measures how one probability distribution <span class="math inline">\(Q\)</span> diverges from another, <span class="math inline">\(P\)</span> :</p>
 <p><span class="math display">\[
 D_{KL}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
@@ -332,13 +332,14 @@ D_{KL}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
 <p><span class="math display">\[
 D_{KL}(P \| Q) = \int_{-\infty}^{\infty} p(x) \log \frac{p(x)}{q(x)} dx
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Concreate example">
+<p>In this cityscape analogy, the KL divergence measures how much extra walking you’d do if you used map <span class="math inline">\(Q\)</span> instead of the true map <span class="math inline">\(P\)</span>. When following directions from <span class="math inline">\(Q\)</span>, the additional distance traveled is proportional to <span class="math inline">\(D_{KL}(P \| Q)\)</span>. It’s like a penalty for when <span class="math inline">\(Q\)</span> underestimates or misrepresents the probability of going through certain streets compared to <span class="math inline">\(P\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Concrete cityscape exemple">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Concreate example
+Concrete cityscape exemple
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -368,10 +369,9 @@ Concreate example
 </div>
 </div>
 </div>
-<p>In this cityscape analogy, the KL divergence measures how much extra walking you’d do if you used map <span class="math inline">\(Q\)</span> instead of the true map <span class="math inline">\(P\)</span>. When following directions from <span class="math inline">\(Q\)</span>, the additional distance traveled is proportional to <span class="math inline">\(D_{KL}(P \| Q)\)</span>. It’s like a penalty for when <span class="math inline">\(Q\)</span> underestimates or misrepresents the probability of going through certain streets compared to <span class="math inline">\(P\)</span>.</p>
-<p>The KL divergence quantifies the inefficiency of assuming that the distribution <span class="math inline">\(Q\)</span> approximates the true distribution <span class="math inline">\(P\)</span>. When encoding data points sampled from <span class="math inline">\(P\)</span> using a code optimized for <span class="math inline">\(Q\)</span>, the additional coding length is proportional to <span class="math inline">\(D_{KL}(P \| Q)\)</span>.</p>
-<p>Now consider, for example, the log term <span class="math inline">\(\log \frac{P(x)}{Q(x)}\)</span>. If <span class="math inline">\(Q\)</span> suggests you go down an alley while <span class="math inline">\(P\)</span> shows it’s a dead end (i.e., <span class="math inline">\(Q(x)\)</span> approaches zero but <span class="math inline">\(P(x)\)</span> doesn’t), that’s when our navigator (KL divergence) really starts warning you, “Watch out! You’re about to take a long detour!”</p>
-<p>The log term, <span class="math inline">\(\log \frac{P(x)}{Q(x)}\)</span>, acts as a penalty for underestimating probabilities in <span class="math inline">\(Q\)</span> compared to <span class="math inline">\(P\)</span>.</p>
+<p>The KL divergence quantifies the inefficiency of assuming that the distribution <span class="math inline">\(Q\)</span> approximates the true distribution <span class="math inline">\(P\)</span>. When encoding data points sampled from <span class="math inline">\(P\)</span> using a code optimized for <span class="math inline">\(Q\)</span>, the additional encoding length is proportional to <span class="math inline">\(D_{KL}(P \| Q)\)</span>.</p>
+<p>Now consider, for example, the log term <span class="math inline">\(\log \frac{P(x)}{Q(x)}\)</span>. If <span class="math inline">\(P\)</span> suggests you go down an alley while <span class="math inline">\(Q\)</span> shows it’s a dead end (i.e., <span class="math inline">\(Q(x)\)</span> approaches zero but <span class="math inline">\(P(x)\)</span> doesn’t), that’s when our navigator (KL divergence) really starts warning you, “Watch out! You’re about to take a long detour!”</p>
+<p>The log term, <span class="math inline">\(\log \frac{P(x)}{Q(x)}\)</span>, doesn’t just warn you - it declares the entire route using Q as invalid (by giving it an infinite penalty) for underestimating probabilities in <span class="math inline">\(Q\)</span> compared to <span class="math inline">\(P\)</span>.</p>
 <p>KL divergence heavily penalizes cases where <span class="math inline">\(Q(x)\)</span> approaches zero while <span class="math inline">\(P(x)\)</span> remains non-zero.</p>
 <p>Before continuing let’s keep in mind the special properties of KL divergence through this lens:</p>
 <ol type="1">
@@ -382,8 +382,8 @@ Concreate example
 </section>
 <section id="jensenshannon-divergence" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="jensenshannon-divergence"><span class="header-section-number">2.2</span> Jensen–Shannon Divergence</h2>
-<p>Continuing our city analogy but now, instead of blindly following one or the other, you want to find a balanced and reliable way to combine them for your journey from point A to B. Here’s come the Jensen-Shannon (JS) divergence.</p>
-<p>The JS Divergence is a symmetrized and smoother version of the KL Divergence, defined as:</p>
+<p>Continuing our city analogy, imagine you have two different navigation systems (representing distributions P and Q) giving you directions from point A to B. Using KL divergence, you could measure how much extra distance you’d walk if you followed Q’s directions when P actually knows the correct route (KL(P||Q)), or vice versa (KL(Q||P)). But what if, instead of just measuring how wrong one system is compared to the other, you want to understand how different these two navigation systems are from each other? Here’s where the Jensen-Shannon (JS) divergence comes in.</p>
+<p>We can see the JS Divergence as a symmetrized and smoother version of the KL Divergence, defined as:</p>
 <p><span class="math display">\[
 D_{JS}(P \| Q) = \frac{1}{2} D_{KL}(P \| M) + \frac{1}{2} D_{KL}(Q \| M), \text{ where } M = \frac{1}{2}(P + Q)
 \]</span></p>
@@ -610,8 +610,12 @@ To be more clear
 </section>
 <section id="the-wasserstein-distance" class="level1 page-columns page-full" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> The Wasserstein distance</h1>
-<p>Imagine you’re a data scientist faced with an intriguing challenge: how do you measure the similarity between two different distributions? Perhaps you’re comparing the distribution of customer spending patterns before and after a marketing campaign, or maybe you’re evaluating how well a generative model captures the essence of real data.</p>
-<p>Enter the Wasserstein distance – a powerful mathematical tool that approaches this problem with an elegant metaphor: imagine your distributions as piles of earth, and you need to figure out the most efficient way to reshape one pile into the other.</p>
+<p>When comparing distributions, the KL divergence helps us measure the expected logarithmic difference when using one distribution to approximate another - like measuring the accumulated inefficiency of following wrong directions. The Jensen-Shannon divergence builds on this by averaging two KL divergences, giving us a symmetric measure of dissimilarity between distributions.<br>
+Although KL and JS provide ways to compare distributions through their probability structures, they have limitations.</p>
+<p>Let’s take a concrete example: imagine you’re a data scientist who needs to compare customer purchasing patterns before and after a marketing campaign. In this case, you might want a measure that captures not only probability differences but also the actual ‘distance’ between values.<br>
+This is where the Wasserstein distance comes in, with its elegant earth-moving metaphor: imagine your distributions as piles of earth, and you need to figure out the most efficient way to reshape one pile into the other.</p>
+<p>This earth-moving perspective gives us a more intuitive way to measure distribution differences. Instead of just looking at probability ratios like KL divergence does, or symmetric probability differences like JS divergence does, Wasserstein distance considers how far probability mass needs to move to transform one distribution into another. This is particularly useful when dealing with distributions that don’t overlap much, where KL and JS divergences might struggle to provide meaningful comparisons.</p>
+<p>So while KL and JS work with probability ratios and log differences, Wasserstein explicitly incorporates the underlying geometry/distance of the space where the distributions live.</p>
 <section id="the-mathematical-journey" class="level2 page-columns page-full" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="the-mathematical-journey"><span class="header-section-number">4.1</span> The Mathematical Journey</h2>
 <section id="the-classical-approach-monges-vision" class="level3 page-columns page-full" data-number="4.1.1">
@@ -902,7 +906,7 @@ The heatmap of the cost matrix <span class="math inline">\(C\)</span> illustrate
 By visualized <span class="math inline">\(T\)</span> as a heatmap we will shows the amounts of mass transported from each bin of <span class="math inline">\(p(x)\)</span> to <span class="math inline">\(q(x)\)</span>.</p></li>
 </ol>
 <p>Below are the results of applying the above concepts:</p>
-<div id="eec98ad3" class="cell" data-execution_count="5">
+<div id="92872435" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>

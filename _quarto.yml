@@ -17,9 +17,9 @@ website:
         href: posts.qmd
     right: 
     - icon: github
-      href: https://quarto.org/docs/websites
+      href: https://github.com/IO-Thyr
     - icon: linkedin
-      href: https://quarto.org/docs/websites
+      href: https://www.linkedin.com/in/tancrede-hayer/
     - icon: youtube
       href: https://www.youtube.com/@essience
 

@@ -14,7 +14,7 @@ format:
     toc-depth: 3
     code-fold: true
 execute:
-  freeze: true
+  freeze: auto
   cache: true
 image: preview-image.png
 citation: true
@@ -42,7 +42,7 @@ This  property ensures that our distance metrics align with the intuitive notion
 
 # The Kullback-Leibler and Jensen-Shannon divergence
 ## The Kullback-Leibler divergence
-Imagine you're in a bustling city, and you have two maps, $P$ and $Q$, trying to guide you through the streets. Now, we want to know which map is more reliable when navigating from point A to B. Here comes KL divergence, to help us out!
+Imagine you're in a bustling city, and you have two maps, $P$ and $Q$, trying to guide you through the streets. Now, we want to know which map is more reliable when navigating from point A to B (by comparing an outdated map vs a new official map). Here comes KL divergence, to help us out!
 
 The KL Divergence measures how one probability distribution $Q$ diverges from another, $P$ :
 
@@ -56,7 +56,9 @@ $$
 D_{KL}(P \| Q) = \int_{-\infty}^{\infty} p(x) \log \frac{p(x)}{q(x)} dx
 $$
 
-:::{.callout-tip title="Concreate example" collapse="true"}
+In this cityscape analogy, the KL divergence measures how much extra walking you'd do if you used map $Q$ instead of the true map $P$. When following directions from $Q$, the additional distance traveled is proportional to $D_{KL}(P \| Q)$. It's like a penalty for when $Q$ underestimates or misrepresents the probability of going through certain streets compared to $P$.
+
+:::{.callout-tip title="Concrete cityscape exemple" collapse="true"}
 Let's make this concrete with a simple city layout having three key locations: Home (H), Work (W), and Shopping Mall (S).
 
 The true map $P$ shows these probabilities of successful routes:
@@ -84,13 +86,12 @@ Total KL divergence = 0.048  -0.037 + 0 = 0.011
 
 This means using map Q instead of P results in about 1.1% inefficiency in navigation. In other words, you'll spend about 1.1% more time or distance traveling when using the approximate map Q compared to the true map P.
 :::
-In this cityscape analogy, the KL divergence measures how much extra walking you'd do if you used map $Q$ instead of the true map $P$. When following directions from $Q$, the additional distance traveled is proportional to $D_{KL}(P \| Q)$. It's like a penalty for when $Q$ underestimates or misrepresents the probability of going through certain streets compared to $P$.
 
-The KL divergence quantifies the inefficiency of assuming that the distribution $Q$ approximates the true distribution $P$. When encoding data points sampled from $P$ using a code optimized for $Q$, the additional coding length is proportional to $D_{KL}(P \| Q)$.  
+The KL divergence quantifies the inefficiency of assuming that the distribution $Q$ approximates the true distribution $P$. When encoding data points sampled from $P$ using a code optimized for $Q$, the additional encoding length is proportional to $D_{KL}(P \| Q)$.  
 
-Now consider, for example, the log term $\log \frac{P(x)}{Q(x)}$. If $Q$ suggests you go down an alley while $P$ shows it's a dead end (i.e., $Q(x)$ approaches zero but $P(x)$ doesn't), that's when our navigator (KL divergence) really starts warning you, "Watch out! You're about to take a long detour!"
+Now consider, for example, the log term $\log \frac{P(x)}{Q(x)}$. If $P$ suggests you go down an alley while $Q$ shows it's a dead end (i.e., $Q(x)$ approaches zero but $P(x)$ doesn't), that's when our navigator (KL divergence) really starts warning you, "Watch out! You're about to take a long detour!"
 
-The log term, $\log \frac{P(x)}{Q(x)}$, acts as a penalty for underestimating probabilities in $Q$ compared to $P$.
+The log term, $\log \frac{P(x)}{Q(x)}$, doesn't just warn you - it declares the entire route using Q as invalid (by giving it an infinite penalty) for underestimating probabilities in $Q$ compared to $P$.
 
 KL divergence heavily penalizes cases where $Q(x)$ approaches zero while $P(x)$ remains non-zero.
 
@@ -105,9 +106,9 @@ Before continuing let's keep in mind the special properties of KL divergence thr
 
 ## Jensen–Shannon Divergence
 
-Continuing our city analogy but now, instead of blindly following one or the other, you want to find a balanced and reliable way to combine them for your journey from point A to B. Here's come the Jensen-Shannon (JS) divergence.
+Continuing our city analogy, imagine you have two different navigation systems (representing distributions P and Q) giving you directions from point A to B. Using KL divergence, you could measure how much extra distance you'd walk if you followed Q's directions when P actually knows the correct route (KL(P||Q)), or vice versa (KL(Q||P)). But what if, instead of just measuring how wrong one system is compared to the other, you want to understand how different these two navigation systems are from each other? Here's where the Jensen-Shannon (JS) divergence comes in.
 
-The JS Divergence is a symmetrized and smoother version of the KL Divergence, defined as:
+We can see the JS Divergence as a symmetrized and smoother version of the KL Divergence, defined as:
 
 $$
 D_{JS}(P \| Q) = \frac{1}{2} D_{KL}(P \| M) + \frac{1}{2} D_{KL}(Q \| M), \text{ where } M = \frac{1}{2}(P + Q)
@@ -324,9 +325,15 @@ While KL and JS divergences can be computed using simple pointwise operations (e
 
 # The Wasserstein distance 
 
-Imagine you're a data scientist faced with an intriguing challenge: how do you measure the similarity between two different distributions? Perhaps you're comparing the distribution of customer spending patterns before and after a marketing campaign, or maybe you're evaluating how well a generative model captures the essence of real data.
+When comparing distributions, the KL divergence helps us measure the expected logarithmic difference when using one distribution to approximate another - like measuring the accumulated inefficiency of following wrong directions. The Jensen-Shannon divergence builds on this by averaging two KL divergences, giving us a symmetric measure of dissimilarity between distributions.  
+Although KL and JS provide ways to compare distributions through their probability structures, they have limitations. 
 
-Enter the Wasserstein distance – a powerful mathematical tool that approaches this problem with an elegant metaphor: imagine your distributions as piles of earth, and you need to figure out the most efficient way to reshape one pile into the other.
+Let's take a concrete example: imagine you're a data scientist who needs to compare customer purchasing patterns before and after a marketing campaign. In this case, you might want a measure that captures not only probability differences but also the actual 'distance' between values.  
+This is where the Wasserstein distance comes in, with its elegant earth-moving metaphor: imagine your distributions as piles of earth, and you need to figure out the most efficient way to reshape one pile into the other.
+
+This earth-moving perspective gives us a more intuitive way to measure distribution differences. Instead of just looking at probability ratios like KL divergence does, or symmetric probability differences like JS divergence does, Wasserstein distance considers how far probability mass needs to move to transform one distribution into another. This is particularly useful when dealing with distributions that don't overlap much, where KL and JS divergences might struggle to provide meaningful comparisons.
+
+So while KL and JS work with probability ratios and log differences, Wasserstein explicitly incorporates the underlying geometry/distance of the space where the distributions live. 
 
 ## The Mathematical Journey
 
